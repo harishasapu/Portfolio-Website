@@ -1,5 +1,5 @@
 # Stage 1: Build the React app
-FROM node:alpine AS build
+FROM node:latest AS build
 
 # Set the working directory for the app
 WORKDIR /app
@@ -8,8 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Clear npm cache and install only production dependencies (for production mode)
-RUN npm cache clean --force \
-    && npm install --legacy-peer-deps --production
+RUN rm -rf /root/.npm && npm install --legacy-peer-deps --production
 
 # Copy the rest of the application code
 COPY . .
