@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Clear npm cache and install only production dependencies (for production mode)
 RUN npm cache clean --force \
-    && npm ci --production
+    && npm install --legacy-peer-deps --production
 
 # Copy the rest of the application code
 COPY . .
